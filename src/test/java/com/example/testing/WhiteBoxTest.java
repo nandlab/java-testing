@@ -9,5 +9,6 @@ class WhiteBoxTest {
     @Test
     void number() {
         assertEquals(0, WhiteBox.number(0, 0));
+        assertEquals(1, WhiteBox.number(1, 0));
     }
 }
