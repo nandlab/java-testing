@@ -20,12 +20,6 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: build
-      - name: Generate JaCoCo Badge
-        uses: cicirello/jacoco-badge-generator@v2
-        with:
-          badges-directory: badges
-          generate-branches-badge: true
-          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
       - name: Archive test report
         uses: actions/upload-artifact@v2
         with:
@@ -36,3 +30,10 @@ jobs:
         with:
           name: JaCoCo report
           path: build/reports/jacoco/test
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v2
+        with:
+          directory: ./build/reports/jacoco/test/
+          files: jacocoTestReport.xml
+          name: codecov-umbrella
+          verbose: true
